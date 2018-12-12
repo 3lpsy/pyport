@@ -27,16 +27,16 @@ class Worker(Thread):
     def run(self):
         while True:
             func, args, kargs = self.queue.get()
-            if self.verbose > 2:
+            if self.verbose > 4:
                 print("[*] worker: getting task from queue", args)
             try:
-                if self.verbose > 2:
+                if self.verbose > 4:
                     print("[*] worker: executing task from queue", args)
                 func(*args, **kargs)
             except Exception as e:
-                if self.verbose > 2:
+                if self.verbose > 4:
                     print("[*] worker: error occurred in task", args)
-            if self.verbose > 2:
+            if self.verbose > 4:
                 print("[*] worker: mark task as done", args)
             self.queue.task_done()
 
@@ -107,10 +107,15 @@ class ScanManager(object):
                 print("[!!!] open:", port)
                 self.open.append(port)
             con.close()
-        except Exception as e:
+        except socket.timeout as e:
             with print_lock:
                 if self.verbose > 2:
                     print("[!] handler: error", port, type(e))
+                self.errors.append(e)
+        except Exception as e:
+            with print_lock:
+                if self.verbose > 1:
+                    print("[!] handler: interesting error", port, type(e))
                 self.errors.append(e)
 
 if __name__ == '__main__':
@@ -156,10 +161,11 @@ if __name__ == '__main__':
 
     pool.wait_completion()
 
-    print('[=>] open ports:', len(manager.open), 'total')
-    for p in manager.open:
-        print('[==>]', p)
     if verbose > 2:
         print('[=>] errors:', len(manager.errors), 'total')
         for e in manager.errors:
             print('[==>]', e)
+
+    print('[=>] open ports:', len(manager.open), 'total')
+    for p in manager.open:
+        print('[==>]', p)
