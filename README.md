@@ -29,6 +29,4 @@ optional arguments:
 ```
 
 TODO:
-
-[ ] Need to catch the requests exception for HTTP/S to avoid displaying too much information if verbosity is less than 3
 [ ] unique ports if passing in complex port formats

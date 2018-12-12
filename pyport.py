@@ -112,6 +112,13 @@ class ScanManager(object):
                 if self.verbose > 2:
                     print("[!] handler: error", port, type(e))
                 self.errors.append(e)
+
+        except requests.exceptions.ConnectTimeout as e:
+            with print_lock:
+                if self.verbose > 2:
+                    print("[!] handler: error", port, type(e))
+                self.errors.append(e)
+                
         except Exception as e:
             with print_lock:
                 if self.verbose > 1:
