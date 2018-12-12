@@ -31,5 +31,7 @@ optional arguments:
 TODO:
 
 [ ] unique ports if passing in complex port formats
+
 [ ] progress notification
+
 [ ] rewrite in go
