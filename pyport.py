@@ -128,14 +128,15 @@ class ScanManager(object):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-t', '--target', type=str, required=True, help="desired target (ip)")
+    parser.add_argument('-p', '--port',nargs='+', type=str, default=None, required=False, help="ports (-p 1 2 3, -p 1-5, or -p 1,2,3)")
+    parser.add_argument('-P', '--proto', type=str, default="tcp", choices=['tcp', 'udp', 'http', 'https'], help="protocol")
+
     parser.add_argument('-m', '--min-port', type=int, default=1, help="min port (range)")
     parser.add_argument('-M', '--max-port', type=int, default=65535, help="max port (range)")
     parser.add_argument('-T', '--threads', type=int, default=10, help="do you want to go fast?")
     parser.add_argument('--timeout', type=int, default=10, help="set timeout")
     parser.add_argument('--verbose', '-v', action='count',default=0, help="verbosity (-v, -vv, -vvv, -vvvv)")
     parser.add_argument('--no-random', action="store_true", default=False, help="don't randomize port order")
-    parser.add_argument('-P', '--proto', type=str, default="tcp", choices=['tcp', 'udp', 'http', 'https'], help="protocol")
-    parser.add_argument('-p', '--port',nargs='+', type=str, default=None, required=False, help="ports (-p 1 2 3, -p 1-5, or -p 1,2,3)")
 
     args = parser.parse_args()
 
