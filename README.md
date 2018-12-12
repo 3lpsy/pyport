@@ -2,6 +2,10 @@
 
 A simple multi threaded port scanner written in python3 with no dependencies.
 
+## Pro Tip
+
+Sometimes interesting things happen. If you use -vv, pyport will display exception messages when encountering an error that is not related to timeouts. I recommend using -vv when using pyport.
+
 ```
 usage: pyport.py [-h] -t TARGET [-p PORT [PORT ...]] [-P {tcp,udp,http,https}]
                  [-m MIN_PORT] [-M MAX_PORT] [-T THREADS] [--timeout TIMEOUT]
