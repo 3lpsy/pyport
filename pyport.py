@@ -118,7 +118,7 @@ class ScanManager(object):
                 if self.verbose > 2:
                     print("[!] handler: error", port, type(e))
                 self.errors.append(e)
-                
+
         except Exception as e:
             with print_lock:
                 if self.verbose > 1:
@@ -142,7 +142,7 @@ if __name__ == '__main__':
     target = args.target
 
     if not args.port:
-        ports = list(range(args.min_port, args.max_port))
+        ports = list(range(args.min_port, args.max_port + 1))
     else:
         ports = []
         specified_ports = list(args.port)
