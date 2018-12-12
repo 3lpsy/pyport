@@ -30,8 +30,8 @@ optional arguments:
 
 TODO:
 
-[ ] unique ports if passing in complex port formats
+[] unique ports if passing in complex port formats
 
-[ ] progress notification
+[] progress notification
 
-[ ] rewrite in go
+[] rewrite in go
